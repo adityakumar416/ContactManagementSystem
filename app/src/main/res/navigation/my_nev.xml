@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/my_nev"
+    app:startDestination="@id/showNumberFragment">
+
+
+    <fragment
+        android:id="@+id/showNumberFragment"
+        android:name="com.example.yourcms.showContact.ShowNumberFragment"
+        android:label="fragment_show_number"
+        tools:layout="@layout/fragment_show_number" >
+
+        <action
+            android:id="@+id/action_showNumberFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_showNumberFragment_to_updateDetailFragment"
+            app:destination="@id/updateDetailFragment" />
+        <action
+            android:id="@+id/action_showNumberFragment_to_addContactFragment"
+            app:destination="@id/addContactFragment" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.yourcms.profile.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_showNumberFragment"
+            app:destination="@id/showNumberFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.yourcms.userAuthentication.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_registrationFragment"
+            app:destination="@id/registrationFragment" />
+    </fragment>
+    <fragment
+        tools:layout="@layout/fragment_registration"
+        android:id="@+id/registrationFragment"
+        android:name="com.example.yourcms.userAuthentication.RegistrationFragment"
+        android:label="RegistrationFragment" >
+        <action
+            android:id="@+id/action_registrationFragment_to_showNumberFragment"
+            app:destination="@id/showNumberFragment" />
+        <action
+            android:id="@+id/action_registrationFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/updateDetailFragment"
+        android:name="com.example.yourcms.update.UpdateDetailFragment"
+        android:label="fragment_update_detail"
+        tools:layout="@layout/fragment_update_detail" >
+        <action
+            android:id="@+id/action_updateDetailFragment_to_showNumberFragment"
+            app:destination="@id/showNumberFragment" />
+        <argument
+            android:name="currentUser"
+            app:argType="com.example.yourcms.model.ContactData" />
+    </fragment>
+    <fragment
+        android:id="@+id/addContactFragment"
+        android:name="com.example.yourcms.addContact.AddContactFragment"
+        android:label="fragment_add_contact"
+        tools:layout="@layout/fragment_add_contact" >
+        <action
+            android:id="@+id/action_addContactFragment_to_showNumberFragment"
+            app:destination="@id/showNumberFragment" />
+    </fragment>
+
+</navigation>
