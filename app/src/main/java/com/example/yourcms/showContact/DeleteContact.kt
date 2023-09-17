@@ -4,5 +4,6 @@ import com.example.yourcms.model.ContactData
 
 interface DeleteContact {
 
+
     fun deleteContact(contactData: ContactData)
 }

@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
@@ -23,6 +24,7 @@ class ShowNumberFragment : Fragment(),DeleteContact {
  private lateinit var binding: FragmentShowNumberBinding
     private lateinit var prefManager: PrefManager
     private val contactViewModel : ContactViewModel by activityViewModels()
+    private var fullList = ArrayList<ContactData>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,7 +47,7 @@ class ShowNumberFragment : Fragment(),DeleteContact {
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         val dataObserver = Observer<List<ContactData>>{
-            newList -> adapter.setData(newList)
+            newList -> adapter.setData(newList as ArrayList<ContactData>)
         }
 
 
@@ -59,6 +61,22 @@ class ShowNumberFragment : Fragment(),DeleteContact {
             findNavController().navigate(R.id.action_showNumberFragment_to_addContactFragment)
         }
 
+       /* binding.searchIcon.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                if(query!=null){
+                    adapter.filterList(query)
+                }
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+
+                if(newText!=null){
+                    adapter.filterList(newText)
+                }
+                    return true
+            }
+        })*/
 
 
         return binding.root

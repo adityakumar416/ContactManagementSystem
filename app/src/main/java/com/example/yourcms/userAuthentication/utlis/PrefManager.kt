@@ -21,6 +21,7 @@ class PrefManager(context: Context) {
             editor.putString(key,value)
                 .apply()
         }
+
         fun password(key:String,value:String){
             editor.putString(key,value)
                 .apply()

@@ -7,12 +7,22 @@
     >
 
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@null"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="match_parent"
         android:layout_height="360dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="84dp"
         android:background="@drawable/profile_icon"
         android:fontFamily="@font/poppins_medium"
         android:gravity="center"
@@ -28,10 +38,10 @@
         android:background="@drawable/profile_edit_bg"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.54">
+        app:layout_constraintVertical_bias="0.582">
 
     </TextView>
 
@@ -68,16 +78,17 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_medium"
         android:text="Account info !"
         android:textColor="#40744d"
         android:textSize="30sp"
-        android:fontFamily="@font/poppins_medium"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.065" />
+        app:layout_constraintVertical_bias="0.123" />
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"

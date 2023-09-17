@@ -3,8 +3,11 @@ package com.example.yourcms.profile
 import android.os.Bundle
 import android.view.*
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.PopupMenu
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.example.yourcms.MainActivity
 import com.example.yourcms.R
 import com.example.yourcms.databinding.FragmentProfileBinding
 import com.example.yourcms.model.ContactData
@@ -29,7 +32,8 @@ class ProfileFragment : Fragment() {
         val userPhone = prefManager.getValue(Constant.PREF_IS_NUMBER)
         binding.number.text = "+91 $userPhone"
 
-
+        (requireActivity() as AppCompatActivity).setSupportActionBar(binding.toolbar)
+        (activity as MainActivity).supportActionBar?.title = ""
 
 
         binding.backHome.setOnClickListener {
@@ -37,11 +41,12 @@ class ProfileFragment : Fragment() {
         }
 
 
-
-
-
         return binding.root
     }
+
+
+
+
 
     init {
             setHasOptionsMenu(true)
@@ -58,7 +63,8 @@ class ProfileFragment : Fragment() {
         when(item.itemId){
             R.id.logout -> {
                 prefManager.clear()
-                findNavController().navigate(R.id.action_profileFragment_to_loginFragment)
+                findNavController().navigate(R.id.loginFragment)
+
 
                 Toast.makeText(context,"Logout clicked", Toast.LENGTH_SHORT).show();
             }

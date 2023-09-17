@@ -1,5 +1,6 @@
 package com.example.yourcms.showContact
 
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Context
 import android.os.Build
@@ -19,7 +20,8 @@ import de.hdodenhof.circleimageview.CircleImageView
 import kotlin.random.Random
 
 class ShowNumberAdapter:RecyclerView.Adapter<ShowNumberAdapter.ViewHolder>() {
-    private var contactList = emptyList<ContactData>()
+    private var contactList = ArrayList<ContactData>()
+   // emptyList<ContactData>()
     var deleteContact:DeleteContact?=null
     private lateinit var context: Context
     class ViewHolder(view:View):RecyclerView.ViewHolder(view) {
@@ -34,6 +36,7 @@ class ShowNumberAdapter:RecyclerView.Adapter<ShowNumberAdapter.ViewHolder>() {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.contact_item,parent,false)
         return ViewHolder(view)
     }
+
 
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -50,7 +53,7 @@ class ShowNumberAdapter:RecyclerView.Adapter<ShowNumberAdapter.ViewHolder>() {
 
            }
 
-        holder.itemView.findViewById<CardView>(R.id.contact_item).setCardBackgroundColor(holder.itemView.resources.getColor(randomColor(),null))
+        //holder.itemView.findViewById<CardView>(R.id.contact_item).setCardBackgroundColor(holder.itemView.resources.getColor(randomColor(),null))
 
 
         /*   holder.itemView.findViewById<CircleImageView>(R.id.persen).setOnClickListener {
@@ -80,11 +83,21 @@ class ShowNumberAdapter:RecyclerView.Adapter<ShowNumberAdapter.ViewHolder>() {
 
     }
 
+    fun filterList(search: String){
+        contactList.clear()
+        for(item in contactList){
+            if(item.number?.lowercase()?.contains(search.lowercase()) == true || item.name?.lowercase()?.contains(search.lowercase()) == true){
+                contactList.add(item)
+            }
+        }
+        notifyDataSetChanged()
+    }
+
     override fun getItemCount(): Int {
         return contactList.size
     }
 
-    fun setData(contactData: List<ContactData>){
+    fun setData(contactData: ArrayList<ContactData>){
             this.contactList = contactData
         notifyDataSetChanged()
     }

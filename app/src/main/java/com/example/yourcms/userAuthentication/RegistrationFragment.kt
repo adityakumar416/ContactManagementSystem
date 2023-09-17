@@ -27,7 +27,8 @@ class RegistrationFragment : Fragment() {
 
         prefManager = PrefManager(requireActivity())
         binding.signIn.setOnClickListener {
-            findNavController().navigate(R.id.action_registrationFragment_to_loginFragment)
+            findNavController().navigate(R.id.loginFragment)
+
         }
 
         val name = binding.nameEditText.text.toString()
@@ -65,11 +66,6 @@ class RegistrationFragment : Fragment() {
         return binding.root
     }
 
-    override fun onStart() {
-        super.onStart()
-        if(prefManager.getBoolean(Constant.PREF_IS_LOGIN)){
-            findNavController().navigate(R.id.action_registrationFragment_to_showNumberFragment)
-        }
-    }
+
 
 }
