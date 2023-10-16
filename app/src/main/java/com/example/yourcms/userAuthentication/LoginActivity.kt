@@ -1,13 +1,14 @@
 package com.example.yourcms.userAuthentication
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import androidx.navigation.fragment.findNavController
+import androidx.appcompat.app.AppCompatDelegate
+import com.example.yourcms.MainActivity
 import com.example.yourcms.R
 import com.example.yourcms.databinding.ActivityLoginBinding
-import com.example.yourcms.databinding.ActivityMainBinding
-import com.example.yourcms.databinding.FragmentLoginBinding
+
 import com.example.yourcms.userAuthentication.utlis.Constant
 import com.example.yourcms.userAuthentication.utlis.PrefManager
 import com.google.android.material.snackbar.Snackbar
@@ -17,16 +18,20 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var prefManager: PrefManager
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
 
-        prefManager = PrefManager(requireActivity())
+
+        prefManager = PrefManager(this)
 
         binding.signUp.setOnClickListener {
-
-            findNavController().navigate(R.id.registrationFragment)
+            val intent = Intent(this,RegistrationActivity::class.java)
+            startActivity(intent)
+            finish()
 
         }
 
@@ -56,12 +61,14 @@ class LoginActivity : AppCompatActivity() {
                 val checkPassword = prefManager.getValue(Constant.PREF_IS_PASSWORD)
 
                 if(number == checkNumber && checkPassword==password){
-                    findNavController().navigate(R.id.showNumberFragment)
+                    val intent = Intent(this,MainActivity::class.java)
+                    startActivity(intent)
+                    finish()
 
                     prefManager.checkLogin(Constant.PREF_IS_LOGIN, true)
                 }
                 else{
-                    Toast.makeText(context,"Please Registration.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this,"Please Registration.", Toast.LENGTH_SHORT).show();
 
                 }
 
@@ -69,16 +76,14 @@ class LoginActivity : AppCompatActivity() {
 
         }
 
-
-        return binding.root
     }
     override fun onStart() {
         super.onStart()
         if(prefManager.getBoolean(Constant.PREF_IS_LOGIN)){
-            findNavController().navigate(R.id.showNumberFragment)
-        }
+            val intent = Intent(this,MainActivity::class.java)
+            startActivity(intent)
+            finish()        }
     }
 
 }
-    }
-}
+
