@@ -1,16 +1,19 @@
 package com.example.yourcms.profile
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.PopupMenu
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.example.yourcms.MainActivity
 import com.example.yourcms.R
 import com.example.yourcms.databinding.FragmentProfileBinding
 import com.example.yourcms.model.ContactData
+import com.example.yourcms.userAuthentication.LoginActivity
 import com.example.yourcms.userAuthentication.utlis.Constant
 import com.example.yourcms.userAuthentication.utlis.PrefManager
 
@@ -63,8 +66,9 @@ class ProfileFragment : Fragment() {
         when(item.itemId){
             R.id.logout -> {
                 prefManager.clear()
-                findNavController().navigate(R.id.loginFragment)
-
+                val intent = Intent (activity, LoginActivity::class.java)
+                activity?.startActivity(intent)
+                activity?.finish()
 
                 Toast.makeText(context,"Logout clicked", Toast.LENGTH_SHORT).show();
             }
